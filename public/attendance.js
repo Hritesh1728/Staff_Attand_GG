@@ -4,7 +4,7 @@ const attendanceStatus = document.getElementById('attendance-status');
 const welcomeMessage = document.getElementById('welcome-message');
 
 
-const PROXY_URL = 'http://localhost:10000/proxy'; // Replace with your proxy server URL
+const PROXY_URL = process.env.PROXY_URL || 'http://localhost:3000/proxy';; // Replace with your proxy server URL
 const ALLOWED_LOCATION = {
   latitude: 27.698215, // 
   longitude: 76.364715, //

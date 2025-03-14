@@ -1,7 +1,7 @@
-const express = require('express');
-const fetch = require('node-fetch');
-const cors = require('cors');
-const path = require('path');
+import express from 'express';
+import fetch from 'node-fetch';
+import cors from 'cors';
+import path from 'path';
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -11,7 +11,7 @@ app.use(express.json());
 // Serve static files from the "public" folder
 app.use(express.static(path.join(__dirname, 'public')));
 
-const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec'; // Replace with your Google Apps Script URL
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxtxvlhmicE5C2v5xGwe3SxXFBG64CMH4W3BDNecMU8quCWTeAXhdx_9phpNesfVmWH/exec'; // Replace with your Google Apps Script URL
 
 // Proxy route for fetching credentials
 app.get('/proxy', async (req, res) => {
@@ -65,7 +65,6 @@ app.get('*', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
-
 
 
 

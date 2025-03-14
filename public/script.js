@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const statusText = document.getElementById('status');
 
   const PASSKEY = 'admin123'; // Hardcoded passkey for demo purposes
-  const PROXY_URL = process.env.PROXY_URL || 'http://localhost:3000/proxy'; // Replace with your proxy server URL
+  const PROXY_URL = config.PROXY_URL || 'http://localhost:3000/proxy'; // Replace with your proxy server URL
 
   // Admin Login
   adminLoginButton.addEventListener('click', () => {

@@ -9,7 +9,7 @@ const authButton = document.getElementById('auth-button');
 const statusText = document.getElementById('status');
 
 const PASSKEY = 'admin123'; // Hardcoded passkey for demo purposes
-const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL'; // Replace with your Google Apps Script URL
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxtxvlhmicE5C2v5xGwe3SxXFBG64CMH4W3BDNecMU8quCWTeAXhdx_9phpNesfVmWH/exec'; // Replace with your Google Apps Script URL
 
 // Admin Login
 adminLoginButton.addEventListener('click', () => {

@@ -114,20 +114,39 @@ async function saveCredentialToGoogleSheets(employeeName, credentialId) {
     credentialId,
   };
 
-  const response = await fetch(GOOGLE_SCRIPT_URL, {
-    method: 'POST',
-    body: JSON.stringify(data),
-    headers: { 'Content-Type': 'application/json' },
-  });
+  try {
+    const response = await fetch(GOOGLE_SCRIPT_URL, {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: { 'Content-Type': 'application/json' },
+    });
 
-  if (!response.ok) {
-    throw new Error('Failed to save credential');
+    if (!response.ok) {
+      throw new Error(`Failed to save credential: ${response.statusText}`);
+    }
+
+    const result = await response.json();
+    if (result.status !== 'Success') {
+      throw new Error('Failed to save credential');
+    }
+  } catch (error) {
+    console.error('Error saving credential:', error);
+    throw error;
   }
 }
 
 // Get Credential from Google Sheets
 async function getCredentialFromGoogleSheets() {
-  const response = await fetch(`${GOOGLE_SCRIPT_URL}?action=getCredential`);
-  const data = await response.json();
-  return data.credentialId;
+  try {
+    const response = await fetch(`${GOOGLE_SCRIPT_URL}?action=getCredential`);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch credential: ${response.statusText}`);
+    }
+
+    const result = await response.json();
+    return result.credentialId;
+  } catch (error) {
+    console.error('Error fetching credential:', error);
+    throw error;
+  }
 }

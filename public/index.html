@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Biometric Attendance</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Biometric Attendance</h1>
+    <div id="admin-section">
+      <input type="password" id="passkey" placeholder="Enter Passkey">
+      <button id="admin-login">Admin Login</button>
+    </div>
+    <div id="register-section" style="display: none;">
+      <input type="text" id="employee-name" placeholder="Employee Name">
+      <button id="register-button">Register Biometric</button>
+    </div>
+    <div id="attendance-section">
+      <input type="text" id="auth-employee-name" placeholder="Enter your name"> <!-- Input field for employee name -->
+      <button id="auth-button">Authenticate</button> <!-- Auth button -->
+      <p id="status">Status: Not authenticated</p>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

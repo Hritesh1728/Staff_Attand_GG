@@ -3,7 +3,7 @@ import fetch from 'node-fetch';
 import cors from 'cors';
 import path from 'path';
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 10000;
 import { fileURLToPath } from 'url';
 
 // Convert `__dirname` to work with ES modules

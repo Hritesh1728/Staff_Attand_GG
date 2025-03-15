@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const PROXY_URL = config.PROXY_URL || 'http://localhost:3000/proxy'; // Replace with your proxy server URL
 
-  const recordsPerPage = 5; // Set number of records per page
+  const recordsPerPage = 10; // Set number of records per page
   let currentPage = 1;
   let paginatedRecords = [];
 
@@ -29,6 +29,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   function displayAttendanceRecords(records) {
     attendanceTableBody.innerHTML = ''; // Clear existing records
+    // Sort records by date (newest first)
+    records.sort((a, b) => new Date(b[0]) - new Date(a[0]));
 
     // Apply filters
     const employeeNameFilter = employeeFilter.value.trim().toLowerCase();
@@ -50,8 +52,7 @@ function renderTable(page) {
     const start = (page - 1) * recordsPerPage;
     const end = start + recordsPerPage;
     const recordsToShow = paginatedRecords.slice(start, end);
-
-    for (let i=1; i < recordsToShow.length ; i++) {
+    for (let i=0; i < recordsToShow.length ; i++) {
       const row = document.createElement('tr');
       const date = formatDateTime(recordsToShow[i][0]).formattedDate;
       const time = formatDateTime(recordsToShow[i][0]).formattedTime;
@@ -60,19 +61,9 @@ function renderTable(page) {
           <td>${time}</td> <!-- Time -->
           <td>${recordsToShow[i][3]}</td> <!-- Action -->
           <td>${recordsToShow[i][4]}</td> <!-- Employee Name -->
-          <td><button class="delete-button" data-id="${recordsToShow[i][0]}">Delete</button></td> <!-- Delete Button -->
       `;
       attendanceTableBody.appendChild(row);
     };
-
-    // Add event listeners to delete buttons
-    document.querySelectorAll('.delete-button').forEach(button => {
-        button.addEventListener('click', async () => {
-            const timestamp = button.getAttribute('data-id');
-            await deleteAttendanceRecord(timestamp);
-            fetchAttendanceRecords(); // Refresh the table
-        });
-    });
 }
 
 function renderPaginationControls() {
@@ -122,23 +113,6 @@ function renderPaginationControls() {
             }
         });
         paginationContainer.appendChild(nextButton);
-    }
-  }
-
-  // Delete an attendance record
-  async function deleteAttendanceRecord(timestamp) {
-    try {
-      const response = await fetch(`${PROXY_URL}?action=deleteAttendance&timestamp=${encodeURIComponent(timestamp)}`, {
-        method: 'DELETE',
-      });
-
-      if (!response.ok) {
-        throw new Error(`Failed to delete record: ${response.statusText}`);
-      }
-
-      console.log('Record deleted:', timestamp);
-    } catch (error) {
-      console.error('Error deleting record:', error);
     }
   }
 
@@ -230,12 +204,7 @@ function renderPaginationControls() {
     fetchAttendanceRecords();
   });
 
-  // Show Today's Entries
-  showTodayButton.addEventListener('click', () => {
-    const today = new Date().toISOString().split('T')[0];
-    dateFilter.value = today;
-    fetchAttendanceRecords();
-  });
+  
 
   //Date format
   function formatDateTime(timestamp) {

@@ -206,21 +206,6 @@ body {
     color: #000;
   }
   
-  /* Delete Button */
-  .delete-button {
-    padding: 5px 10px;
-    border: none;
-    border-radius: 8px;
-    background-color: #dc3545;
-    color: white;
-    cursor: pointer;
-    transition: 0.3s;
-  }
-  
-  .delete-button:hover {
-    background-color: #c82333;
-  }
-  
   /* Pagination Controls */
   .pagination {
     display: flex;
@@ -258,6 +243,8 @@ body {
       max-width: 100%;
       width: 90%;
       margin-bottom: 20px;
+      overflow-x: auto;
+      overflow-y: auto;
     }
   
     #filters {
@@ -271,7 +258,6 @@ body {
     .right-half {
       width: 100%;
       max-height: none; /* Remove height limit on smaller screens */
-      overflow-y: visible;
-      overflow-x: auto; /* Disable scrolling on smaller screens */
+      overflow-y: visible;/* Disable scrolling on smaller screens */
     }
   }

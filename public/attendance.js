@@ -7,10 +7,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const PROXY_URL = config.PROXY_URL || 'http://localhost:3000/proxy'; // Replace with your Google Script URL
   const ALLOWED_LOCATION = {
-    latitude: 27.698215, // Allowed latitude
-    longitude: 76.364715, // Allowed longitude
+    latitude: 27.6876988, // Allowed latitude
+    longitude: 76.3527898, // Allowed longitude
   };
-  const ALLOWED_RADIUS = 200; // Radius in meters
+  const ALLOWED_RADIUS = 150; // Radius in meters
 
   // Get the employee name from the query parameter
   const urlParams = new URLSearchParams(window.location.search);
@@ -104,6 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
         attendanceTableBody.appendChild(row);
       }
     }
+    
 
     // Display the first page initially
     displayPage(currentPage);
@@ -144,6 +145,10 @@ document.addEventListener('DOMContentLoaded', () => {
     tableContainer.innerHTML = '';
     tableContainer.appendChild(paginationDiv);
   }
+  // Logout
+  logoutButton.addEventListener('click', () => {
+    window.location.href = 'index.html'; // Redirect to main page
+  });  
 
   // Punch In
   punchInButton.addEventListener('click', async () => {
@@ -157,7 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
       );
 
       if (distance > ALLOWED_RADIUS) {
-        throw new Error('You are not within the allowed location');
+        throw new Error('Punch Allowed within Gopal Garments Only');
       }
 
       const timestamp = new Date().toISOString();

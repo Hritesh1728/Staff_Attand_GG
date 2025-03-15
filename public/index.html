@@ -9,21 +9,15 @@
 <body>
   <div class="container">
     <h1>Biometric Attendance</h1>
-    <div id="admin-section">
-      <input type="password" id="passkey" placeholder="Enter Passkey">
-      <button id="admin-login">Admin Login</button>
+    <div id="admin-login-section">
+      <button id="admin-login-button">Admin Login</button>
     </div>
-    <div id="register-section" style="display: none;">
-      <input type="text" id="employee-name" placeholder="Employee Name">
-      <button id="register-button">Register Biometric</button>
-    </div>
-    <div id="attendance-section">
-      <input type="text" id="auth-employee-name" placeholder="Enter your name"> <!-- Input field for employee name -->
-      <button id="auth-button">Authenticate</button> <!-- Auth button -->
+    <div id="employee-auth-section">
+      <input type="text" id="auth-employee-name" placeholder="Enter your name">
+      <button id="auth-button">Authenticate</button>
       <p id="status">Status: Not authenticated</p>
     </div>
   </div>
   <script src="script.js"></script>
-  <script src="config.js"></script>
 </body>
 </html>

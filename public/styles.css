@@ -22,6 +22,8 @@ input {
   padding: 10px;
   font-size: 16px;
   width: 80%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
 button {
@@ -29,6 +31,14 @@ button {
   padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
+}
+
+button:hover {
+  background-color: #0056b3;
 }
 
 button:disabled {
@@ -36,7 +46,16 @@ button:disabled {
   cursor: not-allowed;
 }
 
-#status {
+#status, #admin-status {
   margin-top: 20px;
   font-size: 18px;
+  color: #333;
+}
+
+#admin-login-section {
+  margin-bottom: 20px;
+}
+
+#employee-auth-section {
+  display: block;
 }

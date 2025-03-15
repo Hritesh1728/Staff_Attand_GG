@@ -11,8 +11,9 @@ body {
     padding: 20px;
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
+    align-items: flex-start; /* Align to top to prevent overflow */
+    min-height: 100vh; /* Ensure body takes full height */
+    overflow-y: auto; /* Enable vertical scrolling for the body */
   }
   
   /* Container */
@@ -23,6 +24,7 @@ body {
     backdrop-filter: blur(2px);
     padding: 20px;
     border-radius: 12px;
+    overflow: hidden; /* Prevent container overflow */
   }
   
   /* Page Title */
@@ -48,7 +50,9 @@ body {
     gap: 20px;
     background-color: rgba(37, 21, 118, 0.1);
     border-radius: 10px;
-    padding: 20px;
+    padding: 0;
+    max-height: 80vh; /* Limit height and enable scrolling */
+    overflow-y: auto; /* Enable vertical scrolling */
   }
   
   /* Right Section (7 parts) */
@@ -57,6 +61,10 @@ body {
     display: flex;
     justify-content: center;
     background-color: rgba(37, 21, 118, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    max-height: 80vh; /* Limit height and enable scrolling */
+    overflow-y: auto; /* Enable vertical scrolling */
   }
   
   /* Cards */
@@ -64,18 +72,18 @@ body {
     background: rgba(255, 255, 255, 0.2); /* Glassmorphism effect */
     backdrop-filter: blur(10px);
     padding: 2px;
+    margin: 5px;
     border-radius: 12px;
     width: 100%;
     box-shadow: 0 8px 16px rgba(255, 255, 255, 0.2);
     text-align: center;
     transition: all 0.3s ease-in-out;
-    
   }
   
   /* Left Box Independent Height */
   .left-half .card {
     width: 100%;
-    max-width: 100%;
+    max-width: 95%;
   }
   
   /* Right Box Full Width */
@@ -92,19 +100,23 @@ body {
   #admin-section {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 10px;
   }
   
   #employee-name {
     padding: 10px;
+    width: 80%;
     border: none;
     border-radius: 8px;
     background: rgba(255, 255, 255, 0.8);
     font-size: 14px;
+    
   }
   
   #register-button {
     padding: 10px;
+    width: 80%;
     border: none;
     border-radius: 8px;
     background-color: #28a745;
@@ -128,14 +140,15 @@ body {
   
   /* Logout Button */
   #logout-button {
-    padding: 2px;
+    padding: 10px;
+    margin: 5px;
     border: none;
+    width: 50%;
     border-radius: 8px;
     background-color: #dc3545;
     color: white;
     font-size: 14px;
     cursor: pointer;
-    width: 30%;
     transition: 0.3s;
   }
   
@@ -191,11 +204,6 @@ body {
   #attendance-table td {
     background-color: rgba(255, 255, 255, 0.8);
     color: #000;
-  }
-  #attendance-records div{
-    margin: 10px;
-    display: flex;
-    gap: 20px;
   }
   
   /* Delete Button */
@@ -254,5 +262,16 @@ body {
   
     #filters {
       flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
+    
+    .left-half,
+    .right-half {
+      width: 100%;
+      max-height: none; /* Remove height limit on smaller screens */
+      overflow-y: visible;
+      overflow-x: auto; /* Disable scrolling on smaller screens */
     }
   }

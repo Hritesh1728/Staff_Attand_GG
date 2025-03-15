@@ -9,10 +9,45 @@
 <body>
   <div class="container">
     <h1>Attendance</h1>
-    <p id="welcome-message"></p>
-    <button id="punch-in-button">Punch In</button>
-    <button id="punch-out-button">Punch Out</button>
-    <p id="attendance-status">Status: Ready</p>
+
+    <!-- Split Layout -->
+    <div class="split-layout">
+      <!-- Left Half: Punch In/Out Section -->
+      <div class="left-half">
+        <div class="card">
+          <h2>Punch In/Out</h2>
+          <p id="welcome-message">Welcome!</p>
+          <div id="attendance-section">
+            <button id="punch-in-button">Punch In</button>
+            <button id="punch-out-button" disabled>Punch Out</button>
+            <p id="attendance-status">Status: Ready</p>
+          </div>        
+        </div>
+      </div>
+
+      <!-- Right Half: Attendance Records -->
+      <div class="right-half">
+        <div class="card">
+          <h2>Attendance Records</h2>
+          <div id="attendance-records">
+            <table id="attendance-table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Time</th>
+                  <th>Action</th>
+                  <th>Employee Name</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Rows will be populated here -->
+              </tbody>
+            </table>
+            <div></div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   <script src="config.js"></script>
   <script src="attendance.js"></script>

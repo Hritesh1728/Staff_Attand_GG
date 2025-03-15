@@ -20,17 +20,31 @@ const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxtxvlhmicE5C
 
 // Proxy route for fetching credentials
 app.get('/proxy', async (req, res) => {
-  const employeeName = req.query.employeeName; // Get the employeeName from the query parameters
+  const { action, employeeName } = req.query; // Get action and employeeName from query parameters
 
-  if (!employeeName) {
-    return res.status(400).json({ error: 'Employee name is required' });
+  if (!action) {
+    return res.status(400).json({ error: 'Action is required' });
   }
 
   try {
-    // Forward the request to Google Apps Script with the employeeName parameter
-    const response = await fetch(`${GOOGLE_SCRIPT_URL}?action=getCredential&employeeName=${encodeURIComponent(employeeName)}`);
+    let response;
+    if (action === 'getCredential') {
+      // Handle getCredential action
+      if (!employeeName) {
+        return res.status(400).json({ error: 'Employee name is required for getCredential' });
+      }
+      response = await fetch(
+        `${GOOGLE_SCRIPT_URL}?action=getCredential&employeeName=${encodeURIComponent(employeeName)}`
+      );
+    } else if (action === 'getAttendance') {
+      // Handle getAttendance action
+      response = await fetch(`${GOOGLE_SCRIPT_URL}?action=getAttendance`);
+    } else {
+      return res.status(400).json({ error: 'Invalid action' });
+    }
+
     if (!response.ok) {
-      throw new Error(`Failed to fetch credential: ${response.statusText}`);
+      throw new Error(`Failed to fetch data: ${response.statusText}`);
     }
 
     const data = await response.json();

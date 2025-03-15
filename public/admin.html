@@ -9,13 +9,56 @@
 <body>
   <div class="container">
     <h1>Admin Panel</h1>
-    <div id="admin-section">
-      <input type="text" id="employee-name" placeholder="Employee Name">
-      <button id="register-button">Register Biometric</button>
-      <button id="logout-button">Logout</button>
+
+    <!-- Split Layout -->
+    <div class="split-layout">
+      <!-- Left Half: Add New Employee -->
+      <div class="left-half">
+        <div class="card">
+          <h2>Add New Employee</h2>
+          <div id="admin-section">
+            <input type="text" id="employee-name" placeholder="Employee Name">
+            <button id="register-button">Register Biometric</button>
+          </div>
+          <p id="admin-status">Status: Ready</p>
+        </div>
+        <button id="logout-button">Logout</button>
+      </div>
+
+      <!-- Right Half: Attendance Table -->
+      <div class="right-half">
+        <div class="card">
+          <h2>Attendance Records</h2>
+          <!-- Filters -->
+          <div id="filters">
+            <input type="text" id="employee-filter" placeholder="Filter by Employee Name">
+            <input type="date" id="date-filter">
+            <button id="show-today-button">Show Today's Entries</button>
+          </div>
+
+          <!-- Attendance Table -->
+          <div id="attendance-records">
+            <table id="attendance-table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Time</th>
+                  <th>Action</th>
+                  <th>Employee Name</th>
+                  <th>Delete</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Rows will be populated here -->
+              </tbody>
+            </table>
+            <div id="pagination-controls" class="pagination"></div>
+          </div>
+        </div>
+      </div>
     </div>
-    <p id="admin-status">Status: Ready</p>
   </div>
+  <script src="config.js"></script>
   <script src="admin.js"></script>
 </body>
 </html>

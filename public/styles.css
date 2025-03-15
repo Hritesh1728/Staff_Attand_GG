@@ -1,3 +1,4 @@
+/* General Styles */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -10,52 +11,255 @@ body {
 }
 
 .container {
-  text-align: center;
-  background-color: #fff;
   padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-input {
-  margin: 10px;
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Split Layout */
+.split-layout {
+  display: flex;
+  gap: 20px;
+}
+
+.left-half,
+.right-half {
+  flex: 1;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+/* Card Styles */
+.card {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Punch In/Out Section */
+#attendance-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#punch-in-button,
+#punch-out-button {
   padding: 10px;
-  font-size: 16px;
-  width: 80%;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
-button {
-  margin: 10px;
+#punch-in-button:hover,
+#punch-out-button:hover {
+  background-color: #0056b3;
+}
+
+#punch-out-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+#attendance-status {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #333;
+}
+
+/* Welcome Message */
+#welcome-message {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Attendance Table */
+#attendance-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+#attendance-table th,
+#attendance-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+#attendance-table th {
+  background-color: #f4f4f4;
+}
+
+/* Filters (For Admin Panel) */
+#filters {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+#filters input,
+#filters button {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+#filters button {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+#filters button:hover {
+  background-color: #218838;
+}
+
+/* Delete Button (For Admin Panel) */
+.delete-button {
+  background-color: #ff4d4d;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.delete-button:hover {
+  background-color: #cc0000;
+}
+
+/* Logout Button (For Admin Panel) */
+#logout-button {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+}
+
+#logout-button:hover {
+  background-color: #c82333;
+}
+
+.container-index{
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+/* Admin Login Section */
+#admin-login-section {
+  margin-bottom: 20px;
+}
+
+#admin-login-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+}
+
+#admin-login-button:hover {
+  background-color: #0056b3;
+}
+
+/* Employee Authentication Section */
+#employee-auth-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#auth-employee-name {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+#auth-button {
+  padding: 10px;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#auth-button:hover {
+  background-color: #218838;
+}
+
+#status {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #333;
+}
+
+#attendance-section {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Adds space between elements */
+  justify-content: center; /* Centers elements */
+  margin-top: 10px;
+}
+
+#attendance-section button {
   padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
   border: none;
   border-radius: 5px;
-  background-color: #007bff;
-  color: #fff;
 }
 
-button:hover {
-  background-color: #0056b3;
+#punch-in-button {
+  background-color: #28a745;
+  color: white;
 }
 
-button:disabled {
+#punch-in-button:disabled {
   background-color: #ccc;
   cursor: not-allowed;
 }
 
-#status, #admin-status {
-  margin-top: 20px;
-  font-size: 18px;
+#punch-out-button {
+  background-color: #007bff;
+  color: white;
+}
+
+#punch-out-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+#attendance-status {
+  font-size: 16px;
   color: #333;
-}
-
-#admin-login-section {
-  margin-bottom: 20px;
-}
-
-#employee-auth-section {
-  display: block;
+  margin-left: 10px;
 }

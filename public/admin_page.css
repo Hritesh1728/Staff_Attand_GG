@@ -1,0 +1,258 @@
+/* General Styles */
+body {
+    background-image: url('../img/bg.jpg'); /* Ensure correct path */
+    background-color: rgba(0, 0, 0, 1);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  /* Container */
+  .container {
+    width: 90%;
+    max-width: 1200px;
+    text-align: center;
+    backdrop-filter: blur(2px);
+    padding: 20px;
+    border-radius: 12px;
+  }
+  
+  /* Page Title */
+  h1 {
+    font-size: 36px;
+    color: #39095e;
+    text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.7);
+    margin-bottom: 20px;
+  }
+  
+  /* Split Layout */
+  .split-layout {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start; /* Ensures left box height is independent */
+  }
+  
+  /* Left Section (3 parts) */
+  .left-half {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: rgba(37, 21, 118, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+  }
+  
+  /* Right Section (7 parts) */
+  .right-half {
+    flex: 7;
+    display: flex;
+    justify-content: center;
+    background-color: rgba(37, 21, 118, 0.1);
+  }
+  
+  /* Cards */
+  .card {
+    background: rgba(255, 255, 255, 0.2); /* Glassmorphism effect */
+    backdrop-filter: blur(10px);
+    padding: 2px;
+    border-radius: 12px;
+    width: 100%;
+    box-shadow: 0 8px 16px rgba(255, 255, 255, 0.2);
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+    
+  }
+  
+  /* Left Box Independent Height */
+  .left-half .card {
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  /* Right Box Full Width */
+  .right-half .card {
+    width: 100%;
+  }
+  
+  /* Hover Effect */
+  .left-half .card:hover {
+    transform: scale(1.03);
+  }
+  
+  /* Add New Employee Section */
+  #admin-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  #employee-name {
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.8);
+    font-size: 14px;
+  }
+  
+  #register-button {
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background-color: #28a745;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  #register-button:hover {
+    background-color: #218838;
+  }
+  
+  /* Admin Status */
+  #admin-status {
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 15px;
+    color: #fff;
+  }
+  
+  /* Logout Button */
+  #logout-button {
+    padding: 2px;
+    border: none;
+    border-radius: 8px;
+    background-color: #dc3545;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    width: 30%;
+    transition: 0.3s;
+  }
+  
+  #logout-button:hover {
+    background-color: #c82333;
+  }
+  
+  /* Filters */
+  #filters {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  #filters input,
+  #filters button {
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.8);
+    font-size: 14px;
+  }
+  
+  #filters button {
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  #filters button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Attendance Table */
+  #attendance-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+  }
+  
+  #attendance-table th,
+  #attendance-table td {
+    padding: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+  }
+  
+  #attendance-table th {
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #fff;
+  }
+  
+  #attendance-table td {
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #000;
+  }
+  #attendance-records div{
+    margin: 10px;
+    display: flex;
+    gap: 20px;
+  }
+  
+  /* Delete Button */
+  .delete-button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 8px;
+    background-color: #dc3545;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .delete-button:hover {
+    background-color: #c82333;
+  }
+  
+  /* Pagination Controls */
+  .pagination {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  
+  .pagination button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 8px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .pagination button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .split-layout {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    h1 {
+      font-size: 28px;
+    }
+  
+    .card {
+      max-width: 100%;
+      width: 90%;
+      margin-bottom: 20px;
+    }
+  
+    #filters {
+      flex-direction: column;
+    }
+  }

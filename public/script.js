@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
       alert('Please enter employee name');
       return;
     }
-
+  
     try {
       const publicKeyCredentialCreationOptions = {
         challenge: new Uint8Array(32), // Random challenge
@@ -52,13 +52,16 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         timeout: 60000, // 1 minute timeout
       };
-
+  
       const credential = await navigator.credentials.create({
         publicKey: publicKeyCredentialCreationOptions,
       });
-
+  
+      // Encode the credential ID as Base64
+      const credentialId = btoa(String.fromCharCode(...new Uint8Array(credential.rawId)));
+  
       // Save the credential using the proxy server
-      await saveCredentialToGoogleSheets(employeeName, credential.id);
+      await saveCredentialToGoogleSheets(employeeName, credentialId);
       statusText.textContent = 'Status: Biometric registered';
       console.log('Biometric credential created:', credential);
     } catch (error) {
@@ -67,60 +70,61 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Authenticate with Biometric
+  // Authentication
   authButton.addEventListener('click', async () => {
-    const employeeName = authEmployeeNameInput.value.trim(); // Get the employee name from the input field
-
-    // Check if the user entered a name
+    const employeeName = authEmployeeNameInput.value.trim();
+  
     if (!employeeName) {
       alert('Please enter your name');
-      return; // Exit the function if no name is entered
+      return;
     }
-
+  
     try {
-      // Step 1: Get the credential ID for the employee
-      const url = PROXY_URL + "?action=getCredential&employeeName="+encodeURIComponent(employeeName);
-      console.log('Fetching URL:', url); // Debugging: Log the URL
-
+      const url = `${PROXY_URL}?action=getCredential&employeeName=${encodeURIComponent(employeeName)}`;
+      // console.log('Fetching URL:', url);
+  
       const credentialResponse = await fetch(url);
       if (!credentialResponse.ok) {
         throw new Error(`Failed to fetch credential: ${credentialResponse.statusText}`);
       }
-
+  
       const credentialData = await credentialResponse.json();
       if (credentialData.error) {
         throw new Error(credentialData.error);
       }
-
+  
       const credentialId = credentialData.credentialId;
       if (!credentialId) {
         throw new Error('No biometric credential found for this employee');
       }
-
-      // Step 2: Perform biometric authentication
+  
+      // Decode the Base64-encoded credential ID
+      const decodedCredentialId = Uint8Array.from(atob(credentialId), (c) => c.charCodeAt(0));
+  
       const publicKeyCredentialRequestOptions = {
         challenge: new Uint8Array(32), // Random challenge
         rpId: window.location.hostname, // Use the current domain
         allowCredentials: [
           {
-            id: Uint8Array.from(atob(credentialId), (c) => c.charCodeAt(0)), // Convert credential ID to Uint8Array
+            id: decodedCredentialId, // Use the decoded credential ID
             type: 'public-key',
           },
         ],
         userVerification: 'required', // Require biometric verification
         timeout: 60000, // 1 minute timeout
       };
-
+  
       const assertion = await navigator.credentials.get({
         publicKey: publicKeyCredentialRequestOptions,
       });
-
-      // Step 3: Verify the biometric data
-      if (assertion.id === credentialId) {
+  
+      // Encode assertion.id as Base64 for comparison
+      const assertionId = btoa(String.fromCharCode(...new Uint8Array(assertion.rawId)));
+  
+      if (assertionId === credentialId) {
         statusText.textContent = 'Status: Authenticated';
         console.log('Biometric authentication successful:', assertion);
-
-        // Step 4: Redirect to the attendance page
+  
         window.location.href = `attendance.html?employeeName=${encodeURIComponent(employeeName)}`;
       } else {
         throw new Error('Biometric authentication failed');

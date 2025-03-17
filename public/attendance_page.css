@@ -44,9 +44,11 @@ h1 {
 .left-half {
   flex: 3;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
   background-color: rgba(37, 21, 118, 0.1);
   border-radius: 10px;
+  padding: 5px;
 }
 
 /* Right Section (7 parts) */
@@ -100,6 +102,7 @@ button {
   background-color: #28a745;
   color: white;
   margin-right: 10px;
+  margin-left: -10px;
 }
 
 #punch-in-button:hover {
@@ -109,6 +112,7 @@ button {
 #punch-out-button {
   background-color: #dc3545;
   color: white;
+  margin-right: 10px;
 }
 
 #punch-out-button:hover {

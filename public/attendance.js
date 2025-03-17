@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const attendanceStatus = document.getElementById('attendance-status');
   const welcomeMessage = document.getElementById('welcome-message');
   const attendanceTableBody = document.querySelector('#attendance-table tbody');
+  const logoutButton = document.getElementById('logout-button');
 
   const PROXY_URL = config.PROXY_URL || 'http://localhost:3000/proxy'; // Replace with your Google Script URL
   const ALLOWED_LOCATION = {
